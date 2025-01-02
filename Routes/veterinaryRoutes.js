@@ -1,10 +1,17 @@
 import express from "express";
 const router = express.Router()
 
-import * as  ctrVeterinary from '../controllers/veterinarioController.js'
+import * as  veterinary from '../controllers/veterinaryController.js'
+import checkAuth from '../middleware/authMiddleware.js'
 
-router.post('/', ctrVeterinary.register)
-router.get('/perfil', ctrVeterinary.profile)
-router.get('/confirmar/:token', ctrVeterinary.confirm)
+router.post('/', veterinary.register)
+router.get('/confirmar/:token', veterinary.confirm)
+router.post('/login', veterinary.auth)
+router.post('/olvide-password', veterinary.forgetPassword)
+router.get('/olvide-password/:token', veterinary.checkPassword)
+router.post('/olvide-password/:token', veterinary.newPassword)
 
-export default router
+
+router.get('/perfil', checkAuth, veterinary.profile)
+
+export default router  
