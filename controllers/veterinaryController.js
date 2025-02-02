@@ -18,11 +18,7 @@ export const register = async(req, res)=>{
     const veterinary = new Veterinary(req.body)
     const veterinarySaved = await veterinary.save()
 
-    return res.status(201).json({
-      status:'Success',
-      msg:'Veterinario registrado con exito!',
-      veterinary:veterinarySaved.name
-    })
+     
     
   } catch (error) {
     res.json({msg:'Error al registrar veterinario...'})

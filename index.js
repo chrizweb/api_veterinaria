@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import veterinaryRoutes from "./Routes/veterinaryRoutes.js";
+import patientRoutes from "./Routes/patientRoutes.js";
 
 const app = express()
 app.use(express.json())
@@ -10,6 +11,7 @@ dotenv.config()
 connectDB()
 
 app.use("/api/veterinarios", veterinaryRoutes)
+app.use("/api/pacientes", patientRoutes)
 
 const PORT = process.env.PORT || 3001
 
